@@ -184,10 +184,11 @@ int getreactants(char *reactants_path)
     int i;
     char str_data[2048];
     FILE *in=fopen(reactants_path,"r");
+    //printf("Hello getreactants!\n");
     while(fgets(str_data,2048,in))
     {
         if(str_data[0]=='$')
-            sscanf(str_data,"$reactant_number=",&reactant_number);
+            sscanf(str_data,"%$reactant_number=",&reactant_number);
         else if(str_data[0]='//')
             continue;
         else 
@@ -203,25 +204,25 @@ int getreactions(char reactions_path[])
     int i,reaction_serial,j;
     char str_data[2048];
     FILE *in=fopen(reactions_path,"r");
-    fscanf(in,"$reaction_number=%ld",&reaction_number);
+    fscanf(in,"%$reaction_number=%ld",&reaction_number);
     for(i=0;i<reaction_number;i++)
     {
         
         getsite('&',str_data,2048,in);
         
-        sscanf(str_data,"&&reaction%ld",&reaction_serial);
+        sscanf(str_data+10,"%ld",&reaction_serial);
         
         getsite('$',str_data,2048,in);
         
-        sscanf(str_data,"$activation_energy=%lf",reaction_active_energy+reaction_serial);
+        sscanf(str_data+1,"activation_energy=%lf",reaction_active_energy+reaction_serial);
         
         getsite('$',str_data,2048,in);
         
-        sscanf(str_data,"$reaction_constant=%lf",reaction_constant+reaction_serial);
+        sscanf(str_data+1,"reaction_constant=%lf",reaction_constant+reaction_serial);
         
         getsite('$',str_data,2048,in);
         
-        sscanf(str_data,"$reactants_involved=%d",reactant_involved+reaction_serial);
+        sscanf(str_data+1,"reactants_involved=%d",reactant_involved+reaction_serial);
         
         getsite('$',str_data,2048,in);
         
@@ -255,7 +256,7 @@ int getcondition(char *reactants_path,long double reactant_amount[])
     while(fgets(str_data,2048,in))
     {
         if(str_data[0]=='$'&&str_data[1]=='r')
-            sscanf(str_data,"reactant_number=",&reactant_number);
+            sscanf(str_data+1,"reactant_number=",&reactant_number);
         else if(str_data[0]='//')
             continue;
         else 
@@ -271,18 +272,42 @@ int main(int argc, char **argv)
     char reactants_path[2048];
     char reaction_path[2048];
     char initial_condition_path[2048];
+    char output_path[10][2048];
     long double reactant_amount[MAX_REACTION_CONSTANT];
     int i;
+    FILE *ou[6];
+    
     printf("Molecular Dynamics Simulation Set:\nChemical Reaction Dynamics Simulation Tools v2.0\n");
     printf("Developed by Teren Liu@Harbin Institute of Technology.\nPublished Under BSDv4 License\n");
-    printf("Last updated:2015-12-9@Dongbo Wang's team, Department of Information Material Science,HIT");
+    printf("Last updated:2015-12-9@Dongbo Wang's team, \nDepartment of Information Material Science,SMSE,HIT\n");
     printf("First version published :2014-9-30.thanks to the HIT-iGEM team\n");
     
     printf("\nPlease input the reactant path:");
     gets(reactants_path);
-    
+    getreactants(reactants_path);
+      
     printf("\n Please input the reaction path:");
     gets(reaction_path);
+    getreactions(reaction_path);
+    
+    printf("\nPlease input the initial condition path:");
+    gets(initial_condition_path);
+    getcondition(initial_condition_path,reactant_amount);
+    
+    printf("\nPlease input the step lenth:");
+    scanf("%lf",&simu_step);
+    
+    printf("\nPlease input reaction time you want to simulate:");
+    scanf("%lf",&simu_time);
+    
+    for(i=0;i<5;i++)
+    {
+        printf("\nPlease input the path of the output file %i :",i);
+        scanf("%s",output_path[i]);
+        ou[i]=fopen(output_path[i],"r");
+    }
+    
+    simulation_today(ou,reactant_amount);
     
     return 0;
 }
