@@ -1,0 +1,7 @@
+$reactant_number=5
+//serial	name	type(g/s/l/aq)
+  1		Na	s
+  2		H2O	l
+  3		H2	g
+  4		O2	g
+  5		NaOH	aq

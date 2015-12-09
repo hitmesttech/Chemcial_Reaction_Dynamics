@@ -1,0 +1,20 @@
+//type::
+//1:adiabatic process		<under development
+//2:constant volume	       	<under development
+//3:constant pressure	      	<under development
+//4:constant temperature       	<under development
+//5:other    		       	<will be possible to use in version 3
+$reaction_type=4
+$inital_temperature=300
+//unit:K
+$inital_pressure=100
+//unit: KPa
+$initial_volume=1
+//unit:L
+$reactant_number=5
+//serial	amount	
+  1		1
+  2		5
+  3		3
+  4		0
+  5		4

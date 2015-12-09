@@ -1,0 +1,60 @@
+$reaction_number=5
+&&reaction
+//each line starts with '//' means it is a note
+$serial=1
+$activation_energy=1234
+//unit: kJ
+$reaction_constant=12345
+//k=a*exp(Ea/(kT)),the constant means the a;
+$reactants_involved=4
+$reactants_no=1 4 5 6
+$reactants_chemometric=1 2 4 2
+$reactants_dynamic_ratio=0.4 2 -0.2 0
+
+&&reaction
+//each line starts with '//' means it is a note
+$serial=2
+$activation_energy=1234
+//unit: kJ
+$reaction_constant=12345
+//k=a*exp(Ea/(kT)),the constant means the a;
+$reactants_involved=4
+$reactants_no=1 4 5 6
+$reactants_chemometric=1 2 4 2
+$reactants_dynamic_ratio=0.4 2 -0.2 0
+
+&&reaction
+//each line starts with '//' means it is a note
+$serial=3
+$activation_energy=1234
+//unit: kJ
+$reaction_constant=12345
+//k=a*exp(Ea/(kT)),the constant means the a;
+$reactants_involved=4
+$reactants_no=1 4 5 6
+$reactants_chemometric=1 2 4 2
+$reactants_dynamic_ratio=0.4 2 -0.2 0
+
+&&reaction
+//each line starts with '//' means it is a note
+$serial=4
+$activation_energy=1234
+//unit: kJ
+$reaction_constant=12345
+//k=a*exp(Ea/(kT)),the constant means the a;
+$reactants_involved=4
+$reactants_no=1 4 5 6
+$reactants_chemometric=1 2 4 2
+$reactants_dynamic_ratio=0.4 2 -0.2 0
+
+&&reaction
+//each line starts with '//' means it is a note
+$serial=5
+$activation_energy=1234
+//unit: kJ
+$reaction_constant=12345
+//k=a*exp(Ea/(kT)),the constant means the a;
+$reactants_involved=4
+$reactants_no=1 4 5 6
+$reactants_chemometric=1 2 4 2
+$reactants_dynamic_ratio=0.4 2 -0.2 0
